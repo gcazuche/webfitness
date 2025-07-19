@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Web Fitness</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                 <img src="images/logo_placeholder.png" alt="Web Fitness Logo" class="logo-img">
+                 <span>Web<strong>Fitness</strong> - Admin</span>
+            </a>
+            <nav>
+                <a href="#" id="logout-btn">Sair</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container page-content">
+        <h1 class="page-title">Painel de Controle de Pedidos</h1>
+        <p class="page-subtitle">Visualize e atualize o status dos pedidos dos clientes.</p>
+
+        <div id="admin-dashboard">
+            <div class="dashboard-header">
+                <div class="header-item">Cód. Pedido</div>
+                <div class="header-item">Cliente</div>
+                <div class="header-item">Produto</div>
+                <div class="header-item">Status</div>
+            </div>
+            <div id="order-list">
+            </div>
+        </div>
+        
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

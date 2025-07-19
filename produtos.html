@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossos Produtos - Web Fitness</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/logo_placeholder.png" alt="Web Fitness Logo" class="logo-img">
+                <span>Web<strong>Fitness</strong></span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="produtos.html" class="active">Produtos</a></li>
+                    <li><a href="sobre.html">Sobre Nós</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="acompanhar.html">Acompanhar Pedido</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container page-content">
+        <h1 class="page-title">Nossos Equipamentos</h1>
+        <p class="page-subtitle">Clique em um produto para ver mais detalhes, cores e especificações.</p>
+        
+        <div class="product-grid">
+            <div class="product-card" data-name="Elevação Pélvica" data-img="images/esteira.jpg" 
+                 data-specs="Produzinho em ferro Metalon 80x80 | Pintura Eletrostática | Acabamentos em inox | Comprimento: 1,70m | Largura: 1,12m | Altura: 1,22m | Peso: 180Kg(aproximadamente)" 
+                 data-colors="Preto, Grafite, Prata">
+                <img src="images/esteira.jpg" alt="Elevação Pélvica">
+                <h3>Elevação Pélvica</h3>
+                <button class="btn-details">Ver Detalhes</button>
+            </div>
+
+            <div class="product-card" data-name="Bicicleta Ergométrica B-PRO" data-img="images/bike.jpg" 
+                 data-specs="Texto | Texto | Texto | Texto | Texto | Texto" 
+                 data-colors="Branco, Amarelo, Preto">
+                <img src="images/bike.jpg" alt="Bicicleta Ergométrica">
+                <h3>Bicicleta Ergométrica B-PRO</h3>
+                <button class="btn-details">Ver Detalhes</button>
+            </div>
+            
+            <div class="product-card" data-name="Leg Press 45º Pro" data-img="images/legpress.jpg" 
+                 data-specs="Texto | Texto | Texto | Texto | Texto | Texto" 
+                 data-colors="Preto, Verde">
+                <img src="images/legpress.jpg" alt="Leg Press 45º">
+                <h3>Leg Press 45º Pro</h3>
+                <button class="btn-details">Ver Detalhes</button>
+            </div>
+            
+            <div class="product-card" data-name="Estação de Musculação M-8" data-img="images/estacao.jpg" 
+                 data-specs="Texto | Texto | Texto | Texto | Texto | Texto" 
+                 data-colors="Grafite, Vermelho">
+                <img src="images/estacao.jpg" alt="Estação de Musculação">
+                <h3>Estação de Musculação M-8</h3>
+                <button class="btn-details">Ver Detalhes</button>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">×</span>
+            <img id="modal-img" src="" alt="Imagem do Produto">
+            <h2 id="modal-name"></h2>
+            <div class="modal-info">
+                <h3><i class="fas fa-cogs"></i> Especificações Técnicas</h3>
+                <p id="modal-specs"></p>
+                <h3><i class="fas fa-palette"></i> Cores Disponíveis</h3>
+                <p id="modal-colors"></p>
+            </div>
+            <a href="contato.html?produto=NOME_PRODUTO" id="modal-contact-btn" class="btn">Pedir Orçamento</a>
+        </div>
+    </div>
+
+    <footer>
+    <div class="container">
+        <div class="footer-top">
+            <p><a href="#" id="admin-trigger" title="Acesso Administrativo">©</a> 2024 Web Fitness. Todos os direitos reservados.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <a href="#" class="policy-link"><i class="fas fa-file-contract"></i> Termos de Uso</a>
+            <a href="#" class="policy-link"><i class="fas fa-file-signature"></i> Termo de Serviço</a>
+            <a href="#" class="policy-link"><i class="fas fa-user-shield"></i> Política de Privacidade</a>
+            <a href="#" class="policy-link"><i class="fas fa-undo-alt"></i> Política de cancelamento e reembolso</a>
+            <a href="#" class="policy-link"><i class="fas fa-truck"></i> Condições do Frete</a>
+        </div>
+    </div>
+    </footer>
+
+    <div id="admin-login-modal" class="modal">
+    <div class="modal-content login-modal-content">
+        <span class="close-modal-login" title="Fechar">×</span>
+        <h2>Acesso Administrativo</h2>
+        <form id="admin-login-form">
+            <div class="form-group">
+                <label for="username">Usuário</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" required>
+            </div>
+            <p id="login-error" class="error-message"></p>
+            <button type="submit" class="btn">Entrar</button>
+        </form>
+    </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
