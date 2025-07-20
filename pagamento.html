@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formas de Pagamento - Web Fitness</title>
+    <link rel="shortcut icon" type="image/png" href="/icone.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="https://lh3.googleusercontent.com/HtQEM9bgdISfOHgXpbtMEMtyi0FXxQr9BFEZe9UB7-_nQy96L7w-DYUwf2qeZ0i2KUM7Q83NCr_n-VpWAdl3xoeuRc30eWdXMQoHi7oSQgFtDodY-8AXgYIzAfpX5M3gf3pBAXIMXDM=w16383" alt="Web Fitness Logo" class="logo-img">
+                <span>Web<strong>Fitness</strong></span>
+            </a>
+            <button id="mobile-menu-trigger" class="mobile-menu-trigger">
+            <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="sobre.html">Sobre Nós</a></li>
+                    <li><a href="pagamento.html" class="active">Pagamento</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="acompanhar.html">Acompanhar Pedido</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container page-content">
+        <h1 class="page-title">Formas de Pagamento</h1>
+        <p class="page-subtitle">Oferecemos diversas opções para facilitar sua compra. Escolha a que melhor se adapta a você.</p>
+
+        <div class="payment-options-grid">
+            
+            <div class="payment-option-card wide-card">
+                <i class="fas fa-qrcode"></i>
+                <h3>Pagamento via PIX</h3>
+                <p>A forma mais rápida e segura de comprar. A aprovação é instantânea e você pode ter acesso a descontos especiais. Entre em contato para saber mais!</p>
+                <a href="contato.html" class="btn">Entrar em Contato</a>
+            </div>
+            
+            <div class="payment-option-card wide-card">
+                <i class="fas fa-money-check-alt"></i>
+                <h3>Entrada + Parcelamento em até 5x</h3>
+                <p>Dê um valor de entrada e parcele o restante sem juros no boleto ou cartão. Flexibilidade para o seu fluxo de caixa.</p>
+                <img src="tabela1.png" alt="Tabela de parcelamento com entrada" class="payment-table-img">
+            </div>
+
+            <div class="payment-option-card wide-card">
+                <i class="fas fa-credit-card"></i>
+                <h3>Mercado Livre em até 10x</h3>
+                <p>Compre com toda a segurança e conveniência do Mercado Livre e parcele em até 10x sem juros no seu cartão de crédito.</p>
+                <img src="https://lh4.googleusercontent.com/vB77lazd_fbwaCM2VgQx5JuopgQJtF1d-5ip0ENf4tN2eL-i7thynu3t8WZR1Sg8BQ96drsy6_-MI0Z5qe1pqnUDaNQm9RTOX5b7y9KGUa7N0W2S8nnPGF6irZgr0dOXys9_jAS5QsT3QU8WRwjjm0-YGr23nwJB0xzJx2XkINjued9Vwbmvvw=w1280" alt="Tabela de parcelamento Mercado Livre" class="payment-table-img">
+            </div>
+
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <p><a href="#" id="admin-trigger" title="Acesso Administrativo">©</a> 2025 Web Fitness. Todos os direitos reservados.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <a href="#" class="policy-link"><i class="fas fa-file-contract"></i> Termos de Uso</a>
+                <a href="#" class="policy-link"><i class="fas fa-file-signature"></i> Termo de Serviço</a>
+                <a href="#" class="policy-link"><i class="fas fa-user-shield"></i> Política de Privacidade</a>
+                <a href="#" class="policy-link"><i class="fas fa-undo-alt"></i> Política de cancelamento e reembolso</a>
+                <a href="#" class="policy-link"><i class="fas fa-truck"></i> Condições do Frete</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="admin-login-modal" class="modal">
+    <div class="modal-content login-modal-content">
+        <span class="close-modal-login" title="Fechar">×</span>
+        <h2>Acesso Administrativo</h2>
+        <form id="admin-login-form">
+            <div class="form-group">
+                <label for="username">Usuário</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" required>
+            </div>
+            <p id="login-error" class="error-message"></p>
+            <button type="submit" class="btn">Entrar</button>
+        </form>
+    </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

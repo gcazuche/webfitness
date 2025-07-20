@@ -52,7 +52,7 @@ header .container {
 }
 
 .logo-img {
-    height: 50px; /* Adjust height as needed */
+    height: 50px; 
     width: auto;
 }
 
@@ -674,39 +674,104 @@ footer {
     transform: rotate(90deg); 
 }
 
-@media (max-width: 992px) {
-    .logo {
-        font-size: 24px;
-    }
-    header nav ul {
-        gap: 20px;
-    }
-}
-
-@media (max-width: 768px) {
-
-    header .container {
-        flex-direction: column; 
-        gap: 20px;
-    }
-    
-    header nav ul {
-        gap: 15px;
-        padding: 0;
-        justify-content: center; 
-        flex-wrap: wrap; 
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 15px; 
     }
 
     .slider-container {
         height: 70vh; 
     }
+
     .slide-content h1 {
-        font-size: 32px; 
-    }
-    .slide-content p {
-        font-size: 16px; 
+        font-size: 36px; 
     }
 
+    .slide-content p {
+        font-size: 18px; 
+    }
+}
+
+/* =================================================================== */
+/* === MEDIA QUERIES PARA RESPONSIVIDADE (Telas Menores e Celular) === */
+/* =================================================================== */
+
+/* --- Esconde o botão de menu em telas grandes por padrão --- */
+.mobile-menu-trigger {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--dark-text);
+    font-size: 28px;
+    cursor: pointer;
+}
+
+
+/* Para tablets e dispositivos menores (onde o menu hambúrguer aparecerá) */
+@media (max-width: 768px) {
+    /* --- LÓGICA DO HEADER E MENU HAMBÚRGUER --- */
+    
+    /* Mostra o botão do menu hambúrguer */
+    .mobile-menu-trigger {
+        display: block;
+        order: 3; /* Coloca o botão no final do flex container */
+    }
+
+    /* Esconde a navegação tradicional */
+    header nav {
+        display: none; /* ESCONDIDO por padrão no mobile */
+        order: 4;
+        width: 100%; /* Ocupa a largura toda quando abrir */
+    }
+    
+    /* Quando o menu estiver ATIVO (classe .menu-active adicionada via JS) */
+    header nav.menu-active {
+        display: block; /* MOSTRA o menu */
+    }
+
+    header .container {
+        flex-wrap: wrap; /* Permite que o menu quebre a linha */
+        justify-content: space-between;
+    }
+    
+    header nav ul {
+        flex-direction: column; /* Organiza os links verticalmente */
+        width: 100%;
+        margin-top: 20px;
+    }
+    
+    header nav li {
+        width: 100%;
+    }
+
+    header nav a {
+        display: block;
+        text-align: center;
+        padding: 15px;
+        border-bottom: 1px solid var(--border-color);
+    }
+    header nav a::after {
+        display: none; /* Remove a linha verde de destaque no mobile */
+    }
+    header nav li:last-child a {
+        border-bottom: none;
+    }
+    
+
+    /* --- OUTROS AJUSTES DE RESPONSIVIDADE --- */
+    
+    /* Slider Principal */
+    .slider-container {
+        height: 70vh; 
+    }
+    .slide-content h1 {
+        font-size: 32px;
+    }
+    .slide-content p {
+        font-size: 16px;
+    }
+
+    /* Títulos de Página */
     .page-title {
         font-size: 30px;
     }
@@ -718,69 +783,66 @@ footer {
         padding: 40px 20px;
     }
     
+    /* Layouts em Grade (Sobre, Contato, Modal) */
     .about-content, .contact-wrapper, .modal-content {
-        grid-template-columns: 1fr; 
+        grid-template-columns: 1fr;
         gap: 30px;
     }
 
     .modal-content {
         padding: 20px;
-        max-height: 90vh; 
-        overflow-y: auto; 
+        max-height: 90vh;
+        overflow-y: auto;
     }
     
     .contact-wrapper {
         padding: 20px;
     }
 
+    /* Formulário de Acompanhamento */
     .tracking-form-container {
         flex-direction: column; 
-        gap: 15px;
     }
 
-   .footer-top {
+    /* Rodapé */
+    .footer-top, .footer-bottom {
         flex-direction: column;
-        justify-content: center;
         text-align: center;
     }
 
-    .footer-bottom {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
+    /* CORREÇÃO CRÍTICA: Admin Dashboard */
     #admin-dashboard {
         box-shadow: none;
         background: none;
     }
     .dashboard-header {
-        display: none;
+        display: none; 
     }
     .order-row {
-        grid-template-columns: 1fr; 
+        display: grid;
+        grid-template-columns: 1fr;
         gap: 12px;
         padding: 20px;
-        border: 1px solid var(--border-color); 
+        border: 1px solid var(--border-color);
         margin-bottom: 20px;
         border-radius: 8px;
         box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        background: var(--light-bg) !important; 
+        background: var(--light-bg) !important;
     }
-    
     .order-row .row-item::before {
         font-weight: 700;
         color: var(--dark-text);
         margin-right: 8px;
     }
-    
     .order-row .row-item:nth-child(1)::before { content: 'Cód. Pedido: '; }
     .order-row .row-item:nth-child(2)::before { content: 'Cliente: '; }
     .order-row .row-item:nth-child(3)::before { content: 'Produto: '; }
     .order-row .row-item:nth-child(4)::before { content: 'Status: '; }
-
 }
 
+/* Para celulares muito pequenos */
 @media (max-width: 480px) {
+    /* Refinando fontes e espaçamentos */
     .logo {
         font-size: 22px;
         gap: 10px;
@@ -798,7 +860,60 @@ footer {
         padding: 12px 24px;
         font-size: 14px;
     }
-    header nav a {
-        font-size: 14px;
+}
+
+.payment-options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.payment-option-card {
+    background: var(--grey-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.payment-option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.payment-option-card i {
+    font-size: 40px;
+    color: var(--primary-green);
+    margin-bottom: 20px;
+}
+
+.payment-option-card h3 {
+    font-size: 24px;
+    color: var(--dark-text);
+    margin-bottom: 15px;
+}
+
+.payment-option-card p {
+    line-height: 1.6;
+    margin-bottom: 30px;
+    flex-grow: 1; 
+}
+
+.payment-table-img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+@media (min-width: 1200px) {
+    .payment-option-card.wide-card {
+        grid-column: span 2; 
     }
 }

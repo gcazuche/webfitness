@@ -192,3 +192,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
+const menuTrigger = document.getElementById('mobile-menu-trigger');
+const nav = document.querySelector('header nav');
+
+if (menuTrigger && nav) {
+    menuTrigger.addEventListener('click', () => {
+        nav.classList.toggle('menu-active');
+        const icon = menuTrigger.querySelector('i');
+        // Muda o ícone de 'barras' para 'X' e vice-versa
+        if (nav.classList.contains('menu-active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
+}
