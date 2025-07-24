@@ -163,13 +163,13 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(() => showSlide(currentSlide + 1), 7000); 
     }
 
-    const modal = document.getElementById('product-modal');
+  const modal = document.getElementById('product-modal');
     if (modal) {
         const detailButtons = document.querySelectorAll('.btn-details');
         const closeModalBtn = document.querySelector('.close-modal');
         const modalImg = document.getElementById('modal-img');
         const modalName = document.getElementById('modal-name');
-        const modalSpecs = document.getElementById('modal-specs');
+        const modalSpecsContainer = document.querySelector('#product-modal .modal-info h3:nth-of-type(1)').nextElementSibling;
         const modalColors = document.getElementById('modal-colors');
         const modalContactBtn = document.getElementById('modal-contact-btn');
 
@@ -177,21 +177,34 @@ document.addEventListener('DOMContentLoaded', () => {
             button.addEventListener('click', () => {
                 const card = button.closest('.product-card');
                 const name = card.dataset.name, img = card.dataset.img, specs = card.dataset.specs, colors = card.dataset.colors;
+                
                 modalName.textContent = name;
                 modalImg.src = img;
                 modalImg.alt = name;
-                modalSpecs.textContent = specs;
                 modalColors.textContent = colors;
                 modalContactBtn.href = `contato.html?produto=${encodeURIComponent(name)}`;
+
+                modalSpecsContainer.innerHTML = ''; 
+                
+                const specsList = specs.split('|').map(s => s.trim()); 
+                const ul = document.createElement('ul');
+                ul.className = 'specs-list'; 
+
+                specsList.forEach(specText => {
+                    const li = document.createElement('li');
+                    li.textContent = specText;
+                    ul.appendChild(li);
+                });
+                modalSpecsContainer.appendChild(ul); 
+
                 modal.style.display = 'flex';
             });
         });
+
         function closeModal() { modal.style.display = 'none'; }
         closeModalBtn.addEventListener('click', closeModal);
         window.addEventListener('click', (event) => { if (event.target === modal) closeModal(); });
-    }
-
-});
+    };
 
 const menuTrigger = document.getElementById('mobile-menu-trigger');
 const nav = document.querySelector('header nav');
@@ -200,7 +213,6 @@ if (menuTrigger && nav) {
     menuTrigger.addEventListener('click', () => {
         nav.classList.toggle('menu-active');
         const icon = menuTrigger.querySelector('i');
-        // Muda o ícone de 'barras' para 'X' e vice-versa
         if (nav.classList.contains('menu-active')) {
             icon.classList.remove('fa-bars');
             icon.classList.add('fa-times');
@@ -209,4 +221,4 @@ if (menuTrigger && nav) {
             icon.classList.add('fa-bars');
         }
     });
-}
+}});
