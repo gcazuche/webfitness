@@ -363,6 +363,10 @@ header nav a:hover::after, header nav a.active::after {
     line-height: 1.6;
 }
 
+.modal-info i {
+    color: var(--accent-yellow);
+    }
+
 #modal-contact-btn {
     width: 100%;
     margin-top: 10px;
@@ -1087,7 +1091,7 @@ footer p {
 }
 
 .payment-table-img {
-    max-width: 80%;
+    max-width: 60%;
     height: auto;
     }
 
