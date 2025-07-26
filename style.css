@@ -316,58 +316,90 @@ header nav a:hover::after, header nav a.active::after {
     width: 90%;
     max-width: 800px;
     position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     animation: slideIn 0.4s;
 }
-@keyframes slideIn {
-  from { transform: translateY(-50px); opacity: 0;}
-  to { transform: translateY(0); opacity: 1;}
+
+.modal-grid-content {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 30px;
+    align-items: flex-start; 
 }
-.modal-content img {
+
+.modal-content img#modal-img {
     width: 100%;
+    height: auto; 
     border-radius: 8px;
-    height: auto;
+    object-fit: contain;
 }
+
 .modal-content #modal-name {
-    grid-column: 1 / -1;
     font-size: 28px;
     color: var(--primary-green);
     margin: 0;
+    width: 100%;
+    text-align: center;
     border-bottom: 2px solid var(--border-color);
     padding-bottom: 15px;
 }
+
+.modal-info {
+    text-align: left; 
+}
+
 .modal-info h3 {
-    margin-top: 15px;
+    margin-top: 0;
     margin-bottom: 10px;
-    font-size: 18px;
 }
-.modal-info i {
-    color: var(--accent-yellow);
-    margin-right: 10px;
+
+.modal-info h3:nth-of-type(2) {
+    margin-top: 25px;
 }
+
 .modal-info p {
-    line-height: 1.7;
-    font-size: 15px;
+    line-height: 1.6;
 }
+
+#modal-contact-btn {
+    width: 100%;
+    margin-top: 10px;
+}
+
 .close-modal {
-    color: #aaa;
     position: absolute;
     top: 15px;
-    right: 25px;
-    font-size: 35px;
-    font-weight: bold;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #f1f1f1;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    line-height: 1;
+    font-weight: normal;
+    color: #888;
+    
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    z-index: 10; 
 }
+
 .close-modal:hover {
-    color: var(--dark-text);
+    background-color: #e74c3c;
+    color: white;
+    transform: rotate(90deg);
 }
-#modal-contact-btn {
-    grid-column: 1 / -1;
-    margin-top: 20px;
-    text-align: center;
+
+@media (max-width: 768px) {
+    .modal-grid-content {
+        grid-template-columns: 1fr;
+    }
 }
 
 .about-content {
@@ -446,37 +478,57 @@ header nav a:hover::after, header nav a.active::after {
 footer {
     background: var(--dark-text);
     color: #f1f1f1;
-    padding: 30px 0;
+    padding: 40px 0; 
     margin-top: 60px;
+    text-align: center;
 }
 
-.footer-top {
+footer .container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap; 
-    gap: 20px;
-    padding-bottom: 25px;
-    margin-bottom: 25px;
-    border-bottom: 1px solid #4a4a4a; 
+    flex-direction: column; 
+    align-items: center;    
+    gap: 25px;              
 }
 
-.footer-top p {
-    flex-grow: 1;
+footer p {
+    margin: 0;
+    font-size: 15px;
+    color: #ccc;
 }
 
-.footer-bottom {
+.social-links {
+    display: flex;
+    gap: 20px; 
+}
+
+.social-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px; 
+    transition: color 0.3s ease, transform 0.3s ease;
+    margin-left: 0; 
+}
+
+.social-links a:hover {
+    color: var(--primary-green);
+    transform: translateY(-3px);
+}
+
+.policy-links-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap; 
     gap: 15px 30px; 
+    padding-top: 25px; 
+    border-top: 1px solid #4a4a4a;
+    width: 100%;
 }
 
 .policy-link {
     color: #ccc;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 14px;
     transition: color 0.3s ease;
     display: inline-flex;
     align-items: center;
@@ -548,6 +600,7 @@ footer {
         height: 40px;
         font-size: 20px;
     }
+
 }
 
 .social-links a {
@@ -1040,4 +1093,20 @@ footer {
 
 .payment-option-card.wide-card {
     align-items: center;
+}
+
+.avisos-list {
+    list-style: none; 
+    padding: 0;
+    margin: 0 auto;   
+    text-align: left; 
+    width: 100%;
+    max-width: 650px; 
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+}
+
+.warning-text {
+    color: #c0392b; 
 }
