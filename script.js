@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     const initialOrders = [
         { id: 'WF2025-001', customer: 'Carlos Pereira', product: 'Elevação Pélvica', status: 'recebido' },
         { id: 'WF2025-002', customer: 'Ana Beatriz', product: 'Elevação Pélvica', status: 'enviado' },
@@ -106,43 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderDashboard();
     }
 
-    const trackingForm = document.getElementById('tracking-form');
-    if (trackingForm) {
-        const resultCodeInput = document.getElementById('order-code');
-        const resultContainer = document.getElementById('tracking-result');
-
-        trackingForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const code = resultCodeInput.value.trim().toUpperCase();
-            if (!code) return;
-            
-            const orders = JSON.parse(localStorage.getItem('webFitnessOrders'));
-            const order = orders.find(o => o.id.toUpperCase() === code);
-
-            resultContainer.style.display = 'block';
-
-            if (order) {
-                const statuses = ['recebido', 'enviado', 'transporte', 'entregue'];
-                const currentStatusIndex = statuses.indexOf(order.status);
-
-                resultContainer.innerHTML = `
-                    <div class="order-details-header">
-                        <h3>Status do Pedido: #${order.id}</h3>
-                        <p><strong>Produto:</strong> ${order.product}</p>
-                    </div>
-                    <ul class="progress-bar">
-                        <li class="progress-step ${currentStatusIndex >= 0 ? 'active' : ''} ${currentStatusIndex === 0 ? 'active-current' : ''}">Recebido</li>
-                        <li class="progress-step ${currentStatusIndex >= 1 ? 'active' : ''} ${currentStatusIndex === 1 ? 'active-current' : ''}">Enviado</li>
-                        <li class="progress-step ${currentStatusIndex >= 2 ? 'active' : ''} ${currentStatusIndex === 2 ? 'active-current' : ''}">Em Transporte</li>
-                        <li class="progress-step ${currentStatusIndex >= 3 ? 'active' : ''} ${currentStatusIndex === 3 ? 'active-current' : ''}">Entregue</li>
-                    </ul>
-                `;
-            } else {
-                resultContainer.innerHTML = `<p class="order-not-found">Pedido não encontrado. Verifique o código e tente novamente.</p>`;
-            }
-        });
-    }
-
     const slider = document.querySelector('.slider');
     if (slider) { 
         const slides = document.querySelectorAll('.slide');
@@ -163,39 +125,85 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(() => showSlide(currentSlide + 1), 7000); 
     }
 
-  const modal = document.getElementById('product-modal');
+    const menuTrigger = document.getElementById('mobile-menu-trigger');
+    const nav = document.querySelector('header nav');
+    if (menuTrigger && nav) {
+        menuTrigger.addEventListener('click', () => {
+            nav.classList.toggle('menu-active');
+            const icon = menuTrigger.querySelector('i');
+            if (nav.classList.contains('menu-active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+    }
+
+    const modal = document.getElementById('product-modal');
     if (modal) {
         const detailButtons = document.querySelectorAll('.btn-details');
         const closeModalBtn = document.querySelector('.close-modal');
         const modalImg = document.getElementById('modal-img');
         const modalName = document.getElementById('modal-name');
-        const modalSpecsContainer = document.querySelector('#product-modal .modal-info h3:nth-of-type(1)').nextElementSibling;
-        const modalColors = document.getElementById('modal-colors');
+        const modalPrice = document.getElementById('modal-price');
+        const modalSpecs = document.getElementById('modal-specs');
+        const modalColorsContainer = document.getElementById('modal-colors');
         const modalContactBtn = document.getElementById('modal-contact-btn');
+
+        const colorMap = {
+            'preto': '#000000', 'branco': '#FFFFFF', 'vermelho': '#e74c3c',
+            'amarelo': '#f1c40f', 'verde': '#2ecc71', 'cinza': '#bdc3c7',
+            'azul': '#2980b9', 'laranja': '#e67e22', 'roxo': '#8e44ad',
+            'rosa': '#e84393'
+        };
 
         detailButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const card = button.closest('.product-card');
-                const name = card.dataset.name, img = card.dataset.img, specs = card.dataset.specs, colors = card.dataset.colors;
-                
+                const name = card.dataset.name, 
+                      img = card.dataset.img, 
+                      specs = card.dataset.specs, 
+                      colors = card.dataset.colors,
+                      price = card.dataset.price; 
+
+                if (!name || name === "Em-Breve") return;
+
                 modalName.textContent = name;
                 modalImg.src = img;
                 modalImg.alt = name;
-                modalColors.textContent = colors;
                 modalContactBtn.href = `contato.html?produto=${encodeURIComponent(name)}`;
-
-                modalSpecsContainer.innerHTML = ''; 
                 
-                const specsList = specs.split('|').map(s => s.trim()); 
-                const ul = document.createElement('ul');
-                ul.className = 'specs-list'; 
+                if (price) {
+                    modalPrice.textContent = price;
+                    modalPrice.style.display = 'block';
+                } else {
+                    modalPrice.style.display = 'none';
+                }
 
+                modalSpecs.innerHTML = '';
+                const specsList = specs.split('|').map(s => s.trim());
                 specsList.forEach(specText => {
-                    const li = document.createElement('li');
-                    li.textContent = specText;
-                    ul.appendChild(li);
+                    const p = document.createElement('p');
+                    p.textContent = specText;
+                    modalSpecs.appendChild(p);
                 });
-                modalSpecsContainer.appendChild(ul); 
+
+                modalColorsContainer.innerHTML = '';
+                const colorsList = colors.split(',').map(c => c.trim().toLowerCase());
+                
+                colorsList.forEach(colorName => {
+                    const colorCode = colorMap[colorName];
+                    if (colorCode) {
+                        const bubble = document.createElement('div');
+                        bubble.className = 'color-bubble';
+                        bubble.style.backgroundColor = colorCode;
+                        bubble.title = colorName.charAt(0).toUpperCase() + colorName.slice(1);
+                        if (colorName === 'branco') bubble.style.border = '1px solid #ddd';
+                        modalColorsContainer.appendChild(bubble);
+                    }
+                });
 
                 modal.style.display = 'flex';
             });
@@ -204,21 +212,5 @@ document.addEventListener('DOMContentLoaded', () => {
         function closeModal() { modal.style.display = 'none'; }
         closeModalBtn.addEventListener('click', closeModal);
         window.addEventListener('click', (event) => { if (event.target === modal) closeModal(); });
-    };
-
-const menuTrigger = document.getElementById('mobile-menu-trigger');
-const nav = document.querySelector('header nav');
-
-if (menuTrigger && nav) {
-    menuTrigger.addEventListener('click', () => {
-        nav.classList.toggle('menu-active');
-        const icon = menuTrigger.querySelector('i');
-        if (nav.classList.contains('menu-active')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
-}});
+    }
+});

@@ -1130,3 +1130,59 @@ header .container {
         padding: 0 20px;
     }
 }
+
+.color-swatch-container {
+    display: flex;       
+    flex-wrap: wrap;     
+    gap: 12px;          
+    margin-top: 8px;     
+}
+
+.color-bubble {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15); 
+    transition: transform 0.2s ease;
+}
+
+.color-bubble:hover {
+    transform: scale(1.15); 
+}
+
+.form-buttons {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 15px;      
+    margin-top: 10px;
+    justify-content: center; 
+}
+
+.btn-whatsapp {
+    background-color: #25D366; 
+    color: white;
+}
+
+.btn-whatsapp:hover {
+    background-color: #1DA851; 
+}
+
+.btn-whatsapp i {
+    margin-right: 8px; 
+}
+
+.product-price {
+    font-size: 1.4rem;  
+    font-weight: 700;  
+    color: var(--primary-green); 
+    margin: 10px 0 20px 0; 
+}
+
+.modal-product-price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-green);
+    margin: -10px 0 20px 0;
+    text-align: center;
+}

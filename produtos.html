@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +11,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
+
 <body>
     <header>
         <div class="container">
@@ -20,7 +22,7 @@
                 <span>Web<strong>Fitness</strong></span>
             </a>
             <button id="mobile-menu-trigger" class="mobile-menu-trigger">
-            <i class="fas fa-bars"></i>
+                <i class="fas fa-bars"></i>
             </button>
             <nav>
                 <ul>
@@ -29,7 +31,6 @@
                     <li><a href="sobre.html">Sobre Nós</a></li>
                     <li><a href="pagamento.html">Pagamento</a></li>
                     <li><a href="contato.html">Contato</a></li>
-                    <!-- <li><a href="acompanhar.html">Acompanhar Pedido</a></li> -->
                 </ul>
             </nav>
         </div>
@@ -38,45 +39,42 @@
     <main class="container page-content">
         <h1 class="page-title">Nossos Equipamentos</h1>
         <p class="page-subtitle">Clique em um produto para ver mais detalhes, cores e especificações.</p>
-        
+
         <div class="product-grid">
-            <div class="product-card" 
-                 data-name="Elevação Pélvica" 
-                 data-img="testeaparelho.jpeg"
-                 data-specs="Estrutura: Produzido em ferro Metalon 80x80| Pintura: Eletrostática a pó | Acabamentos: Guias em inox polido e cinto pélvico ajustável | Dimensões: 1,70m (C) X 1,12m (L) x 1,22m (A) | Peso: 180Kg"
-                 data-colors="Preto, branco, Vermelho, Amarelo, Azul, Rosa, Verde, Cinza, Laranja e Roxo">
+            <div class="product-card" data-name="Elevação Pélvica" data-img="testeaparelho.jpeg"
+                data-specs="Estrutura produzida em ferro Metalon 80x80 | Pintura eletrostática | Acabamentos em inox polido e cinto pélvico ajustável | Dimensões: 1,70m (C) X 1,12m (L) x 1,22m (A) | Peso: 180Kg | Personalização: Cores adaptáveis para sua academia"
+                data-colors="Preto, Branco, Vermelho, Amarelo, Verde, Cinza, Azul, Laranja, Roxo, Rosa"
+                data-price="R$ 5.890,00">
                 <img src="pelvica3.jpeg" alt="Elevação Pélvica">
                 <h3>Elevação Pélvica</h3>
+                <p class="product-price"></p>
                 <button class="btn-details">Ver Detalhes</button>
             </div>
 
-            <div class="product-card" 
-                 data-name="Em-Breve" 
-                 data-img="" 
-                 data-specs="" 
-                 data-colors="">
-                <img src="" alt="Em-Breve">
-                <h3>Em-Breve</h3>
+            <div class="product-card" data-name="Agachamento Búlgaro" data-img=""
+                data-specs="Metalon 80x40 na Chapa 14 | Pintura eletrostática | Pegada emborrachada e Anilheiro em Inox | Dimensões: 1,40m (C) x 1,50m (L) x 1,20m (A) | Peso: 70Kg | Personalização: Cores adaptáveis para sua academia"
+                data-colors="Preto, Branco, Vermelho, Amarelo, Verde, Cinza, Azul, Laranja, Roxo, Rosa"
+                data-price="R$ 4.350,00">
+                <img src="" alt="Agachamento Búlgaro">
+                <h3>Agachamento Búlgaro</h3>
+                <p class="product-price"></p>
                 <button class="btn-details">Ver Detalhes</button>
             </div>
-            
-            <div class="product-card" 
-                 data-name="Em-Breve" 
-                 data-img="" 
-                 data-specs="" 
-                 data-colors="">
-                <img src="" alt="Em-Breve">
-                <h3>Em-Breve</h3>
+
+            <div class="product-card" data-name="Cross Smitch" data-img="" 
+                data-specs="Estrutura: torre em Tubo 3 com Base 80x40 | Carga: Bateria de 80KG | Haste em Inox e Manoplas Emborrachadas | Pintura eletrostática | Dimensões: 2,30m (A) x 1,80m (L) x 1,20m (P) | Peso Total: 240Kg | Personalização: Cores adaptáveis para sua academia" 
+                data-colors="Preto, Branco, Vermelho, Amarelo, Verde, Cinza, Azul, Laranja, Roxo, Rosa"
+                data-price="R$ 6.980,00">
+                <img src="" alt="Cross Smitch">
+                <h3>Cross Smitch</h3>
+                <p class="product-price"></p>
                 <button class="btn-details">Ver Detalhes</button>
             </div>
-            
-            <div class="product-card" 
-                 data-name="Em-Breve" 
-                 data-img="" 
-                 data-specs="" 
-                 data-colors="">
+
+            <div class="product-card" data-name="Em-Breve" data-img="" data-specs="" data-colors="" data-price="">
                 <img src="" alt="Em-Breve">
                 <h3>Em-Breve</h3>
+                <p class="product-price"></p>
                 <button class="btn-details">Ver Detalhes</button>
             </div>
 
@@ -89,58 +87,70 @@
 
             <h2 id="modal-name"></h2>
 
+            <h3 id="modal-price" class="modal-product-price"></h3>
+
             <div class="modal-grid-content">
                 <img id="modal-img" src="" alt="Imagem do Produto">
                 <div class="modal-info">
-                    <h3><i class="fas fa-cogs"></i> Especificações Técnicas</h3>
-                    <p id="modal-specs"></p> 
+                    <h3><i class="fas fa-cogs"></i> Informações</h3>
+                    <p id="modal-specs"></p>
                     <h3><i class="fas fa-palette"></i> Cores Disponíveis</h3>
-                    <p id="modal-colors"></p>
+                    <div id="modal-colors" class="color-swatch-container"></div>
                 </div>
             </div>
 
-            <a href="contato.html?produto=NOME_PRODUTO" id="modal-contact-btn" class="btn">Pedir Orçamento</a>
+            <a href="contato.html?produto=NOME_PRODUTO" id="modal-contact-btn" class="btn">Clique aqui para fazer seu
+                pedido ou tirar dúvidas</a>
         </div>
     </div>
 
-<footer>
-    <div class="container">
-        <p><a href="#" id="admin-trigger" title="Acesso Administrativo"></a>© 2025 Web Fitness. Todos os direitos reservados.</p>
-        
-        <div class="social-links">
-            <a href="https://www.instagram.com/webfitnessequipamentos/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/share/16m2Z5scJp/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://api.whatsapp.com/send/?phone=5517981008047&text=Olá%2C+gostaria+de+saber+mais+sobre+a+Webfitness+e+seus+produtos%21&type=phone_number&app_absent=0" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <footer>
+        <div class="container">
+            <p><a href="#" id="admin-trigger" title="Acesso Administrativo"></a>© 2025 Web Fitness. Todos os direitos
+                reservados.</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/webfitnessequipamentos/" target="_blank" title="Instagram"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/share/16m2Z5scJp/" target="_blank" title="Facebook"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a href="https://api.whatsapp.com/send/?phone=5517981008047&text=Olá%2C+gostaria+de+saber+mais+sobre+a+Webfitness+e+seus+produtos%21&type=phone_number&app_absent=0"
+                    target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="policy-links-wrapper">
+                <a href="https://drive.google.com/file/d/1X2Q-WMG-wTQhqh824zi8mRTcfVGksvcz/view" target="_blank"
+                    class="policy-link"><i class="fas fa-file-contract"></i> Termos de Uso</a>
+                <a href="https://drive.google.com/file/d/1SspNIuP_Fs2AFeWc7yY_RXs3u0UGj64h/view" target="_blank"
+                    class="policy-link"><i class="fas fa-file-signature"></i> Termo de Serviço</a>
+                <a href="https://drive.google.com/file/d/147K-yl621mCB_lJ6P5CD-soQwn4s62Db/view" target="_blank"
+                    class="policy-link"><i class="fas fa-user-shield"></i> Política de Privacidade</a>
+                <a href="https://drive.google.com/file/d/1hkHpPGAf4tF1GksNd7CO1TvcMzQ4acdk/view" target="_blank"
+                    class="policy-link"><i class="fas fa-undo-alt"></i> Política de cancelamento e reembolso</a>
+                <a href="https://drive.google.com/file/d/1UxC03RXdxrhcbK4WOnNrY4h4SJaW1ePn/view" target="_blank"
+                    class="policy-link"><i class="fas fa-truck"></i> Condições do Frete</a>
+            </div>
         </div>
-        
-        <div class="policy-links-wrapper">
-            <a href="https://drive.google.com/file/d/1X2Q-WMG-wTQhqh824zi8mRTcfVGksvcz/view" target="_blank" class="policy-link"><i class="fas fa-file-contract"></i> Termos de Uso</a>
-            <a href="https://drive.google.com/file/d/1SspNIuP_Fs2AFeWc7yY_RXs3u0UGj64h/view" target="_blank" class="policy-link"><i class="fas fa-file-signature"></i> Termo de Serviço</a>
-            <a href="https://drive.google.com/file/d/147K-yl621mCB_lJ6P5CD-soQwn4s62Db/view" target="_blank" class="policy-link"><i class="fas fa-user-shield"></i> Política de Privacidade</a>
-            <a href="https://drive.google.com/file/d/1hkHpPGAf4tF1GksNd7CO1TvcMzQ4acdk/view" target="_blank" class="policy-link"><i class="fas fa-undo-alt"></i> Política de cancelamento e reembolso</a>
-            <a href="https://drive.google.com/file/d/1UxC03RXdxrhcbK4WOnNrY4h4SJaW1ePn/view" target="_blank" class="policy-link"><i class="fas fa-truck"></i> Condições do Frete</a>
-        </div>
-    </div>
-</footer>
+    </footer>
 
     <div id="admin-login-modal" class="modal">
-    <div class="modal-content login-modal-content">
-        <span class="close-modal-login" title="Fechar">×</span>
-        <h2>Acesso Administrativo</h2>
-        <form id="admin-login-form">
-            <div class="form-group">
-                <label for="username">Usuário</label>
-                <input type="text" id="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Senha</label>
-                <input type="password" id="password" required>
-            </div>
-            <p id="login-error" class="error-message"></p>
-            <button type="submit" class="btn">Entrar</button>
-        </form>
+        <div class="modal-content login-modal-content">
+            <span class="close-modal-login" title="Fechar">×</span>
+            <h2>Acesso Administrativo</h2>
+            <form id="admin-login-form">
+                <div class="form-group">
+                    <label for="username">Usuário</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" required>
+                </div>
+                <p id="login-error" class="error-message"></p>
+                <button type="submit" class="btn">Entrar</button>
+            </form>
+        </div>
     </div>
-    </div>
+
     <script src="script.js"></script>
 </body>
+
 </html>
