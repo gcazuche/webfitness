@@ -7,7 +7,7 @@
 --border-color: #e0e0e0;
 }
 
-{
+*{
 margin: 0;
 padding: 0;
 box-sizing: border-box;
@@ -385,12 +385,6 @@ width: 35px;
 height: 35px;
 border-radius: 50%;
 background-color: #f1f1f1;
-
-code
-Code
-download
-content_copy
-expand_less
 display: flex;
 justify-content: center;
 align-items: center;
@@ -398,11 +392,9 @@ font-size: 26px;
 line-height: 1;
 font-weight: normal;
 color: #888;
-
 cursor: pointer;
 transition: all 0.3s ease;
 z-index: 10;
-
 }
 
 .close-modal:hover {
@@ -565,11 +557,6 @@ text-align: center;
 gap: 15px;
 }
 
-code
-Code
-download
-content_copy
-expand_less
 .footer-bottom {
     flex-direction: column;
     gap: 15px;
@@ -769,12 +756,6 @@ background: white;
 position: absolute;
 top: 15px;
 right: 15px;
-
-code
-Code
-download
-content_copy
-expand_less
 width: 32px;
 height: 32px;
 border-radius: 50%; 
@@ -805,11 +786,6 @@ transform: rotate(90deg);
 padding: 0 15px;
 }
 
-code
-Code
-download
-content_copy
-expand_less
 .slider-container {
     height: 70vh; 
 }
@@ -835,11 +811,6 @@ cursor: pointer;
 
 @media (max-width: 768px) {
 
-code
-Code
-download
-content_copy
-expand_less
 .mobile-menu-trigger {
     display: block;
     order: 3; 
@@ -1084,12 +1055,6 @@ width: 35px;
 height: 35px;
 border-radius: 50%;
 background-color: #f1f1f1;
-
-code
-Code
-download
-content_copy
-expand_less
 display: flex;
 justify-content: center;
 align-items: center;
@@ -1097,11 +1062,9 @@ font-size: 26px;
 line-height: 1;
 font-weight: normal;
 color: #888;
-
 cursor: pointer;
 transition: all 0.3s ease;
 z-index: 10;
-
 }
 
 .close-modal:hover {
@@ -1112,11 +1075,6 @@ transform: rotate(90deg);
 
 @media (max-width: 480px) {
 
-code
-Code
-download
-content_copy
-expand_less
 .contact-wrapper {
     padding-left: 10px;
     padding-right: 10px;
