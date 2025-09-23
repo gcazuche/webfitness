@@ -50,9 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (document.getElementById('admin-dashboard') && sessionStorage.getItem('isAdminLoggedIn') !== 'true') {
-        window.location.href = 'index.html'; 
+        window.location.href = 'index.html';
     }
-    
+
     if (logoutBtn) {
         logoutBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let orders = JSON.parse(localStorage.getItem('webFitnessOrders'));
 
         function renderDashboard() {
-            orderListContainer.innerHTML = ''; 
+            orderListContainer.innerHTML = '';
             orders.forEach(order => {
                 const row = document.createElement('div');
                 row.className = 'order-row';
@@ -87,26 +87,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 orderListContainer.appendChild(row);
             });
         }
-        
         orderListContainer.addEventListener('change', (e) => {
             if (e.target.classList.contains('status-select')) {
                 const orderId = e.target.dataset.orderId;
                 const newStatus = e.target.value;
-                
                 const orderToUpdate = orders.find(o => o.id === orderId);
                 if (orderToUpdate) {
                     orderToUpdate.status = newStatus;
-                    e.target.dataset.status = newStatus; 
+                    e.target.dataset.status = newStatus;
                     localStorage.setItem('webFitnessOrders', JSON.stringify(orders));
                 }
             }
         });
-
         renderDashboard();
     }
 
     const slider = document.querySelector('.slider');
-    if (slider) { 
+    if (slider) {
         const slides = document.querySelectorAll('.slide');
         const prevBtn = document.querySelector('.prev');
         const nextBtn = document.querySelector('.next');
@@ -119,10 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
             else currentSlide = index;
             slider.style.transform = `translateX(-${currentSlide * 100}%)`;
         }
-
         nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
         prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
-        setInterval(() => showSlide(currentSlide + 1), 7000); 
+        setInterval(() => showSlide(currentSlide + 1), 7000);
     }
 
     const menuTrigger = document.getElementById('mobile-menu-trigger');
@@ -148,9 +144,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const modalImg = document.getElementById('modal-img');
         const modalName = document.getElementById('modal-name');
         const modalPrice = document.getElementById('modal-price');
+        const modalSubprice = document.getElementById('modal-subprice');
         const modalSpecs = document.getElementById('modal-specs');
         const modalColorsContainer = document.getElementById('modal-colors');
         const modalContactBtn = document.getElementById('modal-contact-btn');
+        const modalComboLinksContainer = document.getElementById('modal-combo-links');
 
         const colorMap = {
             'preto': '#000000', 'branco': '#FFFFFF', 'vermelho': '#e74c3c',
@@ -159,58 +157,93 @@ document.addEventListener('DOMContentLoaded', () => {
             'rosa': '#e84393'
         };
 
-        detailButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const card = button.closest('.product-card');
-                const name = card.dataset.name, 
-                      img = card.dataset.img, 
-                      specs = card.dataset.specs, 
-                      colors = card.dataset.colors,
-                      price = card.dataset.price; 
+        function openProductModal(cardElement) {
+            const name = cardElement.dataset.name;
+            const img = cardElement.dataset.img;
+            const specs = cardElement.dataset.specs;
+            const colors = cardElement.dataset.colors;
+            const price = cardElement.dataset.price;
+            const subprice = cardElement.dataset.subprice;
+            const comboItems = cardElement.dataset.comboItems;
 
-                if (!name || name === "Em-Breve") return;
+            if (!name || name === "Em-Breve") return;
 
-                modalName.textContent = name;
-                modalImg.src = img;
-                modalImg.alt = name;
-                modalContactBtn.href = `contato.html?produto=${encodeURIComponent(name)}`;
-                
-                if (price) {
-                    modalPrice.textContent = price;
-                    modalPrice.style.display = 'block';
-                } else {
-                    modalPrice.style.display = 'none';
-                }
+            modalName.textContent = name;
+            modalImg.src = img;
+            modalImg.alt = name;
+            modalContactBtn.href = `https://wa.me/5517981008047?text=Olá%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20produto:%20${encodeURIComponent(name)}`;
+            
+            modalPrice.textContent = price || '';
+            modalPrice.style.display = price ? 'block' : 'none';
 
-                modalSpecs.innerHTML = '';
-                const specsList = specs.split('|').map(s => s.trim());
-                specsList.forEach(specText => {
+            modalSubprice.textContent = subprice || '';
+            modalSubprice.style.display = subprice ? 'block' : 'none';
+
+            modalSpecs.innerHTML = '';
+            if (specs) {
+                specs.split('|').map(s => s.trim()).forEach(specText => {
                     const p = document.createElement('p');
                     p.textContent = specText;
                     modalSpecs.appendChild(p);
                 });
+            }
 
-                modalColorsContainer.innerHTML = '';
-                const colorsList = colors.split(',').map(c => c.trim().toLowerCase());
-                
-                colorsList.forEach(colorName => {
+            modalColorsContainer.innerHTML = '';
+            if (colors) {
+                colors.split(',').map(c => c.trim().toLowerCase()).forEach(colorName => {
                     const colorCode = colorMap[colorName];
                     if (colorCode) {
                         const bubble = document.createElement('div');
                         bubble.className = 'color-bubble';
                         bubble.style.backgroundColor = colorCode;
                         bubble.title = colorName.charAt(0).toUpperCase() + colorName.slice(1);
-                        if (colorName === 'branco') bubble.style.border = '1px solid #ddd';
+                        if (colorName === 'branco') {
+                            bubble.style.border = '1px solid #ddd';
+                        }
                         modalColorsContainer.appendChild(bubble);
                     }
                 });
+            }
+            
+            modalComboLinksContainer.innerHTML = '';
+            modalComboLinksContainer.style.display = 'none';
+            if (comboItems) {
+                modalComboLinksContainer.style.display = 'block';
+                comboItems.split(',').map(item => item.trim()).forEach(itemName => {
+                    const link = document.createElement('button');
+                    link.className = 'combo-item-link';
+                    link.textContent = `Clique Aqui - Ficha Técnica ${itemName}`;
+                    link.addEventListener('click', () => {
+                        const targetCard = document.querySelector(`.product-card[data-name="${itemName}"]`);
+                        if (targetCard) {
+                            openProductModal(targetCard);
+                            modal.scrollTo(0, 0);
+                        } else {
+                            alert(`Ficha técnica para "${itemName}" não encontrada.`);
+                        }
+                    });
+                    modalComboLinksContainer.appendChild(link);
+                });
+            }
 
-                modal.style.display = 'flex';
+            modal.style.display = 'flex';
+        }
+
+        detailButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const card = button.closest('.product-card');
+                openProductModal(card);
             });
         });
 
-        function closeModal() { modal.style.display = 'none'; }
+        function closeModal() {
+            modal.style.display = 'none';
+        }
         closeModalBtn.addEventListener('click', closeModal);
-        window.addEventListener('click', (event) => { if (event.target === modal) closeModal(); });
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
     }
 });

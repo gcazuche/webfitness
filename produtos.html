@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
@@ -44,41 +44,58 @@
             <div class="product-card" data-name="Elevação Pélvica" data-img="testeaparelho.jpeg"
                 data-specs="Metalon 80x40 na Chapa 14 | Pintura eletrostática | Dimensões: 1,70m (C) X 1,12m (L) x 1,22m (A) | Peso: 180Kg | Personalização: Cores adaptáveis para sua academia"
                 data-colors="Preto, Branco, Vermelho, Amarelo, Verde, Cinza, Azul, Laranja, Roxo, Rosa"
-                data-price="R$ 5.890,00 á vista(ou parcelado em 10x)">
+                data-price="R$ 6.450,00 à vista"
+                data-subprice="ou entrada de R$ 1.700 + 5x de R$ 950 no cartão de crédito.">
                 <img src="pelvica3.jpeg" alt="Elevação Pélvica">
                 <h3>Elevação Pélvica</h3>
-                <p class="product-price"></p>
+                <p class="product-price">R$ 6.450,00</p>
                 <button class="btn-details">Ver Detalhes</button>
             </div>
 
             <div class="product-card" data-name="Agachamento Búlgaro" data-img="bulgaro2.jpeg"
                 data-specs="Metalon 80x40 na Chapa 14 | Pintura eletrostática | Pegada emborrachada e Anilheiro em Inox | Dimensões: 1,40m (C) x 1,50m (L) x 1,20m (A) | Peso: 70Kg | Personalização: Cores adaptáveis para sua academia"
                 data-colors="Preto, Branco, Vermelho, Amarelo, Verde, Cinza, Azul, Laranja, Roxo, Rosa"
-                data-price="R$ 4.350,00 á vista(ou parcelado em 10x)">
+                data-price="R$ 4.350,00 à vista"
+                data-subprice="ou entrada de R$ 1.350 + 5x de R$ 600 no cartão de crédito.">
                 <img src="bulgaro3.jpeg" alt="Agachamento Búlgaro">
                 <h3>Agachamento Búlgaro</h3>
-                <p class="product-price"></p>
+                <p class="product-price">R$ 4.350,00</p>
                 <button class="btn-details">Ver Detalhes</button>
             </div>
 
             <div class="product-card" data-name="Cross Smitch" data-img="crossmitch.jpeg"
                 data-specs="Estrutura: torre em Tubo 3 com Base 80x40 | Carga: Bateria de 80KG | Haste em Inox e Manoplas Emborrachadas | Pintura eletrostática | Dimensões: 2,30m (A) x 1,80m (L) x 1,20m (P) | Peso Total: 240Kg | Personalização: Cores adaptáveis para sua academia"
                 data-colors="Preto, Branco, Vermelho, Amarelo, Verde, Cinza, Azul, Laranja, Roxo, Rosa"
-                data-price="R$ 6.980,00 á vista(ou parcelado em 10x)">
+                data-price="R$ 7.500,00 à vista"
+                data-subprice="ou entrada de R$ 2.500 + 5x de R$ 1.000 no cartão de crédito.">
                 <img src="crossmitch.jpeg" alt="Cross Smitch">
                 <h3>Cross Smitch</h3>
-                <p class="product-price"></p>
+                <p class="product-price">R$ 7.500,00</p>
                 <button class="btn-details">Ver Detalhes</button>
             </div>
 
-            <div class="product-card" data-name="Em breve novidades" data-img="" data-specs="" data-colors="" data-price="">
+            <div class="product-card" 
+                 data-name="Combo Gluteos" 
+                 data-img="combogluteos.jpeg"
+                 data-specs="Equipamentos produzidos com materiais de alta qualidade e acabamento Premium | Fabricação própria | Alto desempenho e durabilidade | Personalização: Cores adaptáveis para sua academia"
+                 data-colors="Preto, Branco, Vermelho, Amarelo, Verde, Cinza, Azul, Laranja, Roxo, Rosa"
+                 data-price="R$ 9.250,00 à vista"
+                 data-subprice="ou entrada de R$ 2.250 + 5x de R$ 1.400 no cartão de crédito."
+                 data-combo-items="Elevação Pélvica, Agachamento Búlgaro">
+                <img src="combogluteos.jpeg" alt="Combo Gluteos">
+                <h3>Combo Gluteos</h3>
+                <p class="product-price">R$ 9.250,00</p>
+                <button class="btn-details">Ver Detalhes</button>
+            </div>
+
+            <div class="product-card" data-name="Em-Breve" data-img="" data-specs="" data-colors="" data-price="">
                 <img src="" alt="Em breve novidades">
                 <h3>Em breve novidades</h3>
                 <p class="product-price"></p>
                 <button class="btn-details">Ver Detalhes</button>
             </div>
 
-            <div class="product-card" data-name="Em breve novidades" data-img="" data-specs="" data-colors="" data-price="">
+            <div class="product-card" data-name="Em-Breve" data-img="" data-specs="" data-colors="" data-price="">
                 <img src="" alt="Em breve novidades">
                 <h3>Em breve novidades</h3>
                 <p class="product-price"></p>
@@ -91,26 +108,26 @@
     <div id="product-modal" class="modal">
         <div class="modal-content">
             <span class="close-modal" title="Fechar">×</span>
-
             <h2 id="modal-name"></h2>
-
-            <h3 id="modal-price" class="modal-product-price"></h3>
-
+            <div class="price-container">
+                <h3 id="modal-price" class="modal-product-price"></h3>
+                <p id="modal-subprice" class="modal-product-subprice"></p>
+            </div>
             <div class="modal-grid-content">
                 <img id="modal-img" src="" alt="Imagem do Produto">
                 <div class="modal-info">
                     <h3><i class="fas fa-cogs"></i> Informações</h3>
                     <p id="modal-specs"></p>
+                    <div id="modal-combo-links"></div>
                     <h3><i class="fas fa-palette"></i> Cores Disponíveis</h3>
                     <div id="modal-colors" class="color-swatch-container"></div>
                 </div>
             </div>
-
-            <a href="contato.html?produto=NOME_PRODUTO" id="modal-contact-btn" class="btn">Clique aqui para fazer seu
+            <a href="#" target="_blank" id="modal-contact-btn" class="btn">Clique aqui para fazer seu
                 pedido ou tirar dúvidas</a>
         </div>
     </div>
-
+    
     <footer>
         <div class="container">
             <p><a href="#" id="admin-trigger" title="Acesso Administrativo"></a>© 2025 Web Fitness. Todos os direitos
