@@ -1358,23 +1358,42 @@ footer p {
     }
 }
 
-@media (max-width: 480px) {
+/* =================================================================== */
+/* === CORREÇÃO FINAL E DEFINITIVA PARA O BOTÃO QUEBRADO === */
+/* Cole este bloco no final do seu arquivo style.css */
+/* =================================================================== */
 
-     
+/* --- Ajuste Geral do Botão de Pagamento --- */
+.payment-method .btn {
+    /* Garante que o texto tenha prioridade no layout */
+    display: inline-flex; 
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: auto; /* Deixa o botão se ajustar ao conteúdo */
+    max-width: 100%; /* Impede que ele ultrapasse a tela */
+}
+
+
+/* --- Regra Específica para Telas de Celular --- */
+@media (max-width: 480px) {
     .payment-method .btn-whatsapp {
-         
+        /* Permite a quebra de linha do texto */
         white-space: normal;
+        word-break: break-word; /* Força a quebra de palavras longas se necessário */
         
-        
+        /* Permite que a altura se ajuste ao conteúdo */
         height: auto;
         
-         
+        /* Ajusta o espaçamento interno para dar mais espaço ao texto */
+        padding: 15px 20px; 
+        
+        /* Deixa o texto mais legível quando quebrado */
         line-height: 1.4;
         
-        
-        font-size: 0.9rem;
-        padding: 12px 15px;
+        /* Diminui um pouco a fonte no celular */
+        font-size: 15px; 
     }
-
 }
+
 
