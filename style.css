@@ -1357,3 +1357,24 @@ footer p {
         font-size: 0.9rem;  
     }
 }
+
+@media (max-width: 480px) {
+
+     
+    .payment-method .btn-whatsapp {
+         
+        white-space: normal;
+        
+        
+        height: auto;
+        
+         
+        line-height: 1.4;
+        
+        
+        font-size: 0.9rem;
+        padding: 12px 15px;
+    }
+
+}
+
