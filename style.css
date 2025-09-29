@@ -1159,3 +1159,48 @@ footer p {
 .feature-icon-link {
   text-decoration: none;
 }
+
+/* ========================================================= */
+/* === CORREÇÃO DEFINITIVA PARA O POP-UP EM TELAS PEQUENAS === */
+
+@media (max-width: 768px) {
+  /* Força o layout do pop-up para uma coluna única */
+  .modal-grid-content {
+    grid-template-columns: 1fr;
+  }
+
+  /* Ajusta os espaçamentos internos do pop-up */
+  .modal-content {
+    padding: 20px;
+    gap: 15px; /* Reduz o espaço entre os elementos */
+  }
+
+  /* Limita a altura da imagem para não dominar a tela */
+  .modal-content img#modal-img {
+    max-height: 300px;
+    margin: 0 auto; /* Centraliza a imagem no layout de coluna única */
+  }
+
+  /* Diminui os tamanhos das fontes para caber melhor */
+  .modal-content #modal-name {
+    font-size: 1.5rem; /* ~24px */
+  }
+
+  .modal-product-price {
+    font-size: 1.6rem; /* ~26px */
+  }
+
+  .modal-product-subprice {
+    font-size: 0.9rem; /* ~14px */
+  }
+
+  #modal-specs .specs-list li {
+    font-size: 0.9rem; /* ~14px */
+  }
+
+  /* Garante que os botões ocupem a largura toda e fiquem organizados */
+  .modal-actions {
+    flex-direction: column;
+  }
+}
+/* ========================================================= */
