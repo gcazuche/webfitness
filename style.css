@@ -1229,12 +1229,6 @@ footer p {
     text-align: justify;
 }
 
-    .payment-method .btn-whatsapp {
-        padding: 12px 15px;  
-        font-size: 0.9rem;  
-    }
-}
-
 /* =================================================================== */
 /* === CORREÇÃO FINAL E DEFINITIVA PARA O BOTÃO QUEBRADO === */
 /* Cole este bloco no final do seu arquivo style.css */
@@ -1253,25 +1247,22 @@ footer p {
 
 
 /* --- Regra Específica para Telas de Celular --- */
-@media (max-width: 480px) {
-    .payment-method .btn-whatsapp {
-        /* Permite a quebra de linha do texto */
-        white-space: normal;
-        word-break: break-word; /* Força a quebra de palavras longas se necessário */
-        
-        /* Permite que a altura se ajuste ao conteúdo */
-        height: auto;
-        
-        /* Ajusta o espaçamento interno para dar mais espaço ao texto */
-        padding: 15px 20px; 
-        
-        /* Deixa o texto mais legível quando quebrado */
-        line-height: 1.4;
-        
-        /* Diminui um pouco a fonte no celular */
-        font-size: 15px; 
+/* =================================================================== */
+/* === CORREÇÃO FINAL E DEFINITIVA PARA BOTÕES DA PÁGINA DE CONTATO === */
+/* Cole este bloco no final do seu arquivo style.css */
+/* =================================================================== */
+
+@media (max-width: 600px) {
+
+    /* Alvo: O container dos botões, especificamente na página de contato */
+    .contact-wrapper .form-buttons {
+        /* A MÁGICA: Força os botões a ficarem um embaixo do outro */
+        flex-direction: column;
+    }
+
+    /* Alvo: Os botões dentro desse container */
+    .contact-wrapper .form-buttons .btn {
+        /* Faz com que cada botão ocupe 100% da largura disponível */
+        width: 100%;
     }
 }
-
-
-
