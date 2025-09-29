@@ -1347,3 +1347,13 @@ footer p {
   }
 }
 
+
+.about-content.single-column .about-text p {
+    text-align: justify;
+}
+
+    .payment-method .btn-whatsapp {
+        padding: 12px 15px;  
+        font-size: 0.9rem;  
+    }
+}
