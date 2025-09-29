@@ -1,141 +1,161 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Formas de Pagamento - Web Fitness</title>
-    <link rel="shortcut icon" type="image/png" href="icone.png">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="responsive.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-</head>
+    <link rel="shortcut icon" type="image/png" href="icone.png" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="responsive.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
 
-<body>
+  <body>
     <header>
-        <div class="container">
-            <a href="index.html" class="logo">
-                <img src="icone.png" alt="Web Fitness Logo" class="logo-img">
-                <span>Web<strong>Fitness</strong></span>
-            </a>
-            <button id="mobile-menu-trigger" class="mobile-menu-trigger">
-                <i class="fas fa-bars"></i>
-            </button>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="produtos.html">Produtos</a></li>
-                    <li><a href="sobre.html">Sobre Nós</a></li>
-                    <li><a href="pagamento.html" class="active">Pagamento</a></li>
-                    <li><a href="contato.html">Contato</a></li>
-                    <!-- <li><a href="acompanhar.html">Acompanhar Pedido</a></li> -->
-                </ul>
-            </nav>
-        </div>
+      <div class="container">
+        <a href="index.html" class="logo">
+          <img src="icone.png" alt="Web Fitness Logo" class="logo-img" />
+          <span>Web<strong>Fitness</strong></span>
+        </a>
+        <button id="mobile-menu-trigger" class="mobile-menu-trigger">
+          <i class="fas fa-bars"></i>
+        </button>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="produtos.html">Produtos</a></li>
+            <li><a href="sobre.html">Sobre Nós</a></li>
+            <li><a href="pagamento.html" class="active">Pagamento</a></li>
+            <li><a href="contato.html">Contato</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
     <main class="container page-content">
+      <div class="payment-page-content">
         <h1 class="page-title">Formas de Pagamento</h1>
-        <p class="page-subtitle">Oferecemos diversas opções para facilitar sua compra. Escolha a que melhor se adapta a
-            você.</p>
+        <p class="page-subtitle">
+          Oferecemos diversas opções para facilitar a sua compra. Escolha a que
+          melhor se adapta a você.
+        </p>
 
-        <div class="payment-option-card wide-card">
-            <i class="fas fa-exclamation-triangle"></i>
-            <h3>Avisos Importantes</h3>
-            <ul class="avisos-list">
-                <li>Nosso mediador de parcelamentos é o Mercado Pago, garantindo segurança e praticidade na sua compra.
-                    Parcelamos em até 10x com juros da plataforma.</li>
-                <li>Após o pagamento da entrada e o aceite no contrato de compra, é necessário enviar o comprovante para
-                    confirmar seu pedido.</li>
-                <li><strong class="warning-text">O valor da entrada não é reembolsado em caso de desistência, conforme
-                        aceito no contrato.</strong></li>
-            </ul>
+        <div class="payment-method">
+          <h3>Cartão de Crédito & Pix</h3>
+          <p class="payment-highlight">
+            <strong>Chave Pix</strong> para entrada dos equipamentos (enviar
+            comprovante no WhatsApp):
+          </p>
+          <p class="payment-cnpj">CNPJ: 55.889.155/0001-12</p>
         </div>
 
-        <div class="payment-option-card wide-card">
-            <i class="fas fa-qrcode"></i>
-            <h3>Pagamento via PIX</h3>
-            <p>A forma mais rápida e segura de comprar. A aprovação é instantânea e você pode ter acesso a descontos
-                especiais. Entre em contato para saber mais!</p>
-            <a href="https://api.whatsapp.com/send/?phone=5517981008047&text=Olá%2C+gostaria+de+saber+mais+sobre+a+Webfitness+e+seus+produtos!&type=phone_number&app_absent=0"
-                target="_blank" class="btn">Entrar em contato</a>
+        <div class="payment-method">
+          <a
+            href="https://wa.me/5517981008047?text=Olá%2C%20gostaria%20de%20tirar%20dúvidas%20sobre%20o%20pagamento"
+            class="btn btn-whatsapp"
+            target="_blank"
+            ><i class="fab fa-whatsapp"></i> Em caso de dúvidas ou suporte,
+            encaminhe uma mensagem</a
+          >
         </div>
 
-        <div class="payment-option-card wide-card">
-            <i class="fas fa-money-check-alt"></i>
-            <h3>Entrada + Parcelamento</h3>
-            <p>Dê um valor de entrada e parcele o restante sem juros no boleto ou cartão. Flexibilidade para o seu fluxo
-                de caixa.</p>
-            <!-- <img src="tabela1.png" alt="Tabela de parcelamento com entrada" class="payment-table-img"> -->
-            <a href="https://wa.me/5517981008047?text=Ol%C3%A1%2C%20equipe%20Web%20Fitness%21%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20parcelamento%20dos%20equipamentos%21"
-                target="_blank" class="btn">Para consultar as opções de parcelamento entre em contato para com nosso
-                consultor</a>
-        </div>
+        <div class="payment-method">
+          <h3>Mercado Livre</h3>
+          <p>
+            Também atuamos no Mercado Livre de acordo com as tarifas de
+            parcelamento da plataforma*.
+          </p>
 
-        <div class="payment-option-card wide-card">
-            <i class="fas fa-credit-card"></i>
-            <h3>Mercado Livre em até 10x</h3>
-            <p>Compre com toda a segurança e conveniência do Mercado Livre e parcele em até 10x sem juros no seu cartão
-                de crédito.</p>
-            <!-- <img src="tabela2.png" alt="Tabela de parcelamento Mercado Livre" class="payment-table-img"> -->
-            <a href="https://produto.mercadolivre.com.br/MLB-5396148936-equipamento-elevaco-pelvica-guiada-_JM?searchVariation=183665322876#polycard_client=search-nordic&searchVariation=183665322876&position=12&search_layout=grid&type=item&tracking_id=f534ec07-0f7c-4e85-8320-694b9dfa7634"
-                target="_blank" class="btn">Clique aqui para comprar no Mercado Livre</a>
-        </div>
+          <a
+            href="https://lista.mercadolivre.com.br/_CustId_2449943514?item_id=MLB5396148936&category_id=MLB196977&seller_id=2449943514&client=recoview-selleritems&recos_listing=true"
+            target="_blank"
+            class="ml-logo-link"
+            title="Comprar no Mercado Livre"
+          >
+            <img src="mercadolivre.png" alt="Mercado Livre" class="ml-logo" />
+          </a>
 
+          <p class="payment-footnote">
+            *Os valores e condições de parcelamento podem variar de acordo com
+            as tarifas e taxas aplicadas por cada plataforma.
+          </p>
         </div>
+      </div>
     </main>
 
     <footer>
-        <div class="container">
-            <p><a href="#" id="admin-trigger" title="Acesso Administrativo"></a>© 2025 Web Fitness. Todos os direitos
-                reservados.</p>
-
-            <div class="social-links">
-                <a href="https://www.instagram.com/webfitnessequipamentos/" target="_blank" title="Instagram"><i
-                        class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/share/16m2Z5scJp/" target="_blank" title="Facebook"><i
-                        class="fab fa-facebook-f"></i></a>
-                <a href="https://api.whatsapp.com/send/?phone=5517981008047&text=Olá%2C+gostaria+de+saber+mais+sobre+a+Webfitness+e+seus+produtos%21&type=phone_number&app_absent=0"
-                    target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            </div>
-
-            <div class="policy-links-wrapper">
-                <a href="https://drive.google.com/file/d/1X2Q-WMG-wTQhqh824zi8mRTcfVGksvcz/view" target="_blank"
-                    class="policy-link"><i class="fas fa-file-contract"></i> Termos de Uso</a>
-                <a href="https://drive.google.com/file/d/1SspNIuP_Fs2AFeWc7yY_RXs3u0UGj64h/view" target="_blank"
-                    class="policy-link"><i class="fas fa-file-signature"></i> Termo de Serviço</a>
-                <a href="https://drive.google.com/file/d/147K-yl621mCB_lJ6P5CD-soQwn4s62Db/view" target="_blank"
-                    class="policy-link"><i class="fas fa-user-shield"></i> Política de Privacidade</a>
-                <a href="https://drive.google.com/file/d/1hkHpPGAf4tF1GksNd7CO1TvcMzQ4acdk/view" target="_blank"
-                    class="policy-link"><i class="fas fa-undo-alt"></i> Política de cancelamento e reembolso</a>
-                <a href="https://drive.google.com/file/d/1UxC03RXdxrhcbK4WOnNrY4h4SJaW1ePn/view" target="_blank"
-                    class="policy-link"><i class="fas fa-truck"></i> Condições do Frete</a>
-            </div>
+      <div class="container">
+        <div class="company-info">
+          <h4>Web Fitness Equipamentos</h4>
+          <p>CNPJ: 55.889.155/0001-12</p>
+          <p>Avenida Alfredo Antônio de Oliveira N°2552, Jardim Planalto</p>
+          <p>São José do Rio Preto - SP</p>
         </div>
+        <p>© 2025 Web Fitness. Todos os direitos reservados.</p>
+        <div class="social-links">
+          <a
+            href="https://www.instagram.com/webfitnessequipamentos/"
+            target="_blank"
+            title="Instagram"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a
+            href="https://www.facebook.com/share/16m2Z5scJp/"
+            target="_blank"
+            title="Facebook"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a
+            href="https://api.whatsapp.com/send/?phone=5517981008047&text=Olá%2C+gostaria+de+saber+mais+sobre+a+Webfitness+e+seus+produtos%21&type=phone_number&app_absent=0"
+            target="_blank"
+            title="WhatsApp"
+            ><i class="fab fa-whatsapp"></i
+          ></a>
+        </div>
+        <div class="policy-links-wrapper">
+          <a
+            href="https://drive.google.com/file/d/1X2Q-WMG-wTQhqh824zi8mRTcfVGksvcz/view"
+            target="_blank"
+            class="policy-link"
+            ><i class="fas fa-file-contract"></i> Termos de Uso</a
+          >
+          <a
+            href="https://drive.google.com/file/d/1SspNIuP_Fs2AFeWc7yY_RXs3u0UGj64h/view"
+            target="_blank"
+            class="policy-link"
+            ><i class="fas fa-file-signature"></i> Termo de Serviço</a
+          >
+          <a
+            href="https://drive.google.com/file/d/147K-yl621mCB_lJ6P5CD-soQwn4s62Db/view"
+            target="_blank"
+            class="policy-link"
+            ><i class="fas fa-user-shield"></i> Política de Privacidade</a
+          >
+          <a
+            href="https://drive.google.com/file/d/1hkHpPGAf4tF1GksNd7CO1TvcMzQ4acdk/view"
+            target="_blank"
+            class="policy-link"
+            ><i class="fas fa-undo-alt"></i> Política de cancelamento e
+            reembolso</a
+          >
+          <a
+            href="https://drive.google.com/file/d/1UxC03RXdxrhcbK4WOnNrY4h4SJaW1ePn/view"
+            target="_blank"
+            class="policy-link"
+            ><i class="fas fa-truck"></i> Condições do Frete</a
+          >
+        </div>
+      </div>
     </footer>
-
-    <div id="admin-login-modal" class="modal">
-        <div class="modal-content login-modal-content">
-            <span class="close-modal-login" title="Fechar">×</span>
-            <h2>Acesso Administrativo</h2>
-            <form id="admin-login-form">
-                <div class="form-group">
-                    <label for="username">Usuário</label>
-                    <input type="text" id="username" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Senha</label>
-                    <input type="password" id="password" required>
-                </div>
-                <p id="login-error" class="error-message"></p>
-                <button type="submit" class="btn">Entrar</button>
-            </form>
-        </div>
-    </div>
     <script src="script.js"></script>
-</body>
-
+  </body>
 </html>
