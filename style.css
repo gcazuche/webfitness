@@ -473,6 +473,7 @@ footer p {
   margin-bottom: 15px;
 }
 
+/* --- PÁGINA DE CONTATO --- */
 .contact-wrapper {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
@@ -600,6 +601,7 @@ footer p {
   width: 90%;
   max-width: 800px;
   position: relative;
+  /* Usa um grid para o layout principal do pop-up, organizando as seções */
   display: grid;
   grid-template-areas:
     "header"
@@ -613,10 +615,11 @@ footer p {
   position: absolute;
   top: 15px;
   right: 15px;
+  /* ... o resto do estilo do close-modal ... */
 }
 
 .modal-content #modal-name {
-  grid-area: header; 
+  grid-area: header; /* Coloca na área do header */
   font-size: 28px;
   color: var(--primary-green);
   margin: 0;
@@ -627,12 +630,13 @@ footer p {
 }
 
 .price-container {
-  grid-area: price; 
+  grid-area: price; /* Coloca na área de preço */
   text-align: center;
 }
 
+/* O layout de duas colunas é aplicado aqui dentro */
 .modal-grid-content {
-  grid-area: content; 
+  grid-area: content; /* Coloca na área de conteúdo */
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
   gap: 30px;
@@ -647,7 +651,7 @@ footer p {
 }
 
 .modal-actions {
-  grid-area: actions; 
+  grid-area: actions; /* Coloca na área de ações */
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -1057,103 +1061,246 @@ footer p {
   text-decoration: none;
 }
 
+/* ========================================================= */
+/* === CORREÇÃO DEFINITIVA PARA O POP-UP EM TELAS PEQUENAS === */
+
 @media (max-width: 768px) {
+  /* Força o layout do pop-up para uma coluna única */
   .modal-grid-content {
     grid-template-columns: 1fr;
   }
 
+  /* Ajusta os espaçamentos internos do pop-up */
   .modal-content {
     padding: 20px;
-    gap: 15px; 
+    gap: 15px; /* Reduz o espaço entre os elementos */
   }
 
+  /* Limita a altura da imagem para não dominar a tela */
   .modal-content img#modal-img {
     max-height: 300px;
-    margi: 0 auto; 
+    margin: 0 auto; /* Centraliza a imagem no layout de coluna única */
   }
 
+  /* Diminui os tamanhos das fontes para caber melhor */
   .modal-content #modal-name {
-    font-size: 1.5rem; 
+    font-size: 1.5rem; /* ~24px */
   }
 
   .modal-product-price {
-    font-size: 1.6rem; 
+    font-size: 1.6rem; /* ~26px */
   }
 
   .modal-product-subprice {
-    font-size: 0.9rem; 
+    font-size: 0.9rem; /* ~14px */
   }
 
   #modal-specs .specs-list li {
-    font-size: 0.9rem; 
+    font-size: 0.9rem; /* ~14px */
+  }
+
+  /* Garante que os botões ocupem a largura toda e fiquem organizados */
+  .modal-actions {
+    flex-direction: column;
+  }
+}
+/* ========================================================= */
+
+/* ========================================================= */
+/* === RESPONSIVIDADE PARA TELAS MENORES (< 768px) - CORRIGIDO === */
+@media (max-width: 768px) {
+  /* --- AJUSTES GERAIS --- */
+  .container {
+    padding: 0 15px;
+  }
+
+  .page-title {
+    font-size: 30px;
+  }
+
+  .page-subtitle {
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+
+  /* --- CABEÇALHO E MENU MOBILE --- */
+  header .container {
+    padding: 0 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .mobile-menu-trigger {
+    display: block;
+    order: 3;
+  }
+
+  header nav {
+    display: none;
+    order: 4;
+    width: 100%;
+  }
+
+  header nav.menu-active {
+    display: block;
+  }
+
+  header nav ul {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+    gap: 0;
+  }
+
+  header nav a {
+    display: block;
+    text-align: center;
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  header nav a::after {
+    display: none;
+  }
+
+  header nav li:last-child a {
+    border-bottom: none;
+  }
+
+  /* --- SLIDER --- */
+  .slider-container {
+    height: 70vh;
+  }
+
+  .slider-content h1 {
+    font-size: 32px;
+  }
+
+  .slider-content p {
+    font-size: 16px;
+  }
+
+  .slider-btn {
+    top: 62%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  /* --- LAYOUTS DE COLUNAS --- */
+  .about-content,
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-wrapper {
+    padding: 20px;
+  }
+
+  /* --- MODAL DE PRODUTO (CORREÇÃO CRÍTICA) --- */
+  .modal-content {
+    padding: 20px;
+    gap: 15px;
+    max-height: 90vh;
+  }
+
+  .modal-grid-content {
+    grid-template-columns: 1fr; /* Força 1 coluna */
+    gap: 15px;
+  }
+
+  .modal-content img#modal-img {
+    max-height: 250px;
+    margin: 0 auto;
+  }
+
+  .modal-content #modal-name {
+    font-size: 1.5rem; /* ~24px */
+  }
+
+  .modal-product-price {
+    font-size: 1.6rem; /* ~26px */
+    margin-bottom: 0;
+  }
+
+  .price-container {
+    margin-bottom: 15px;
+  }
+
+  .modal-product-subprice {
+    font-size: 0.9rem; /* ~14px */
+  }
+
+  #modal-specs .specs-list li {
+    font-size: 0.9rem; /* ~14px */
   }
 
   .modal-actions {
     flex-direction: column;
   }
-}
 
+  /* --- PAINEL ADMIN --- */
+  #admin-dashboard {
+    box-shadow: none;
+    background: none;
+  }
+
+  .dashboard-header {
+    display: none;
+  }
+
+  .order-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    background: var(--light-bg) !important;
+  }
+
+  .order-row .row-item::before {
+    font-weight: 700;
+    color: var(--dark-text);
+    margin-right: 8px;
+  }
+
+  .order-row .row-item:nth-child(1)::before {
+    content: "Cód. Pedido: ";
+  }
+  .order-row .row-item:nth-child(2)::before {
+    content: "Cliente: ";
+  }
+  .order-row .row-item:nth-child(3)::before {
+    content: "Produto: ";
+  }
+  .order-row .row-item:nth-child(4)::before {
+    content: "Status: ";
+  }
+}
 /* ========================================================= */
-/* === RESPONSIVIDADE PARA TELAS MENORES (< 768px) - VERSÃO ÚNICA E CORRIGIDA === */
-@media (max-width: 768px) {
-
-    /* --- AJUSTES GERAIS --- */
-    .container { padding: 0 15px; }
-    header .container { padding: 0 20px; flex-wrap: wrap; justify-content: space-between; }
-    .page-title { font-size: 30px; }
-    .page-subtitle { font-size: 16px; margin-bottom: 40px; }
-    .slider-container { height: 70vh; }
-    .slider-content h1 { font-size: 32px; }
-    .slider-content p { font-size: 16px; }
-    .slider-btn { top: 62%; width: 40px; height: 40px; font-size: 20px; }
-
-    /* --- CABEÇALHO E MENU MOBILE --- */
-    .mobile-menu-trigger { display: block; order: 3; }
-    header nav { display: none; order: 4; width: 100%; }
-    header nav.menu-active { display: block; }
-    header nav ul { flex-direction: column; width: 100%; margin-top: 20px; gap: 0; }
-    header nav li { width: 100%; }
-    header nav a { display: block; text-align: center; padding: 15px; border-bottom: 1px solid var(--border-color); }
-    header nav a::after { display: none; }
-    header nav li:last-child a { border-bottom: none; }
-    
-    /* --- LAYOUTS DE COLUNAS --- */
-    .about-content,
-    .contact-wrapper {
-        grid-template-columns: 1fr;
-    }
-    .contact-wrapper { padding: 20px; }
-    .contact-info h3 { text-align: center; }
-
-    /* --- CORREÇÃO DEFINITIVA DO BOTÃO QUEBRADO --- */
-    .form-buttons {
-        flex-direction: column; /* Força os botões a ficarem um embaixo do outro */
-    }
-    .payment-method .btn {
-        width: 100%; /* Faz o botão ocupar a largura total */
-    }
-
-}
 
 @media (max-width: 768px) {
+  /* --- CORREÇÃO PARA O MODAL NO CELULAR --- */
   .modal-content {
-    display: flex; 
+    display: flex; /* Simplifica o layout principal para flexbox */
     flex-direction: column;
     padding: 25px;
     gap: 15px;
-    max-height: 90vh; 
+    max-height: 90vh; /* Permite scroll se necessário */
   }
 
   .modal-grid-content {
-    display: flex; 
-    flex-direction: column;
-    grid-template-columns: none; 
+    display: flex; /* Força o conteúdo principal a ser flexbox */
+    flex-direction: column; /* Empilha a imagem sobre as informações */
+    grid-template-columns: none; /* Desativa a regra de grid conflitante */
     gap: 20px;
   }
 
   .modal-content img#modal-img {
     max-height: 250px;
-    margin: 0 auto; 
+    margin: 0 auto; /* Centraliza a imagem */
   }
 
   .modal-content #modal-name {
@@ -1175,6 +1322,7 @@ footer p {
     margin-top: 10px;
   }
 
+  /* --- OUTRAS REGRAS DE RESPONSIVIDADE NECESSÁRIAS --- */
   .about-content,
   .contact-wrapper {
     grid-template-columns: 1fr;
@@ -1188,25 +1336,30 @@ footer p {
 }
 
 .modal-content {
-  display: flex; 
+  display: flex; /* Força o layout a ser flexível e vertical */
   flex-direction: column;
-  gap: 15px; 
-  max-height: 90vh; 
-  overflow-y: auto;
+  gap: 15px; /* Espaçamento entre as seções */
+  max-height: 90vh; /* Limita a altura para caber na tela */
+  overflow-y: auto; /* Adiciona scroll se o conteúdo for maior */
 }
 
+/* Garante que o container de duas colunas se comporte corretamente */
 .modal-grid-content {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr; 
+  grid-template-columns: 0.8fr 1.2fr; /* Layout para Desktop */
   gap: 25px;
   align-items: flex-start;
 }
+
+/* --- CORREÇÃO FINAL PARA O CELULAR --- */
 @media (max-width: 768px) {
+  /* Empilha a imagem sobre as informações no celular */
   .modal-grid-content {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr; /* Força uma única coluna */
     gap: 20px;
   }
 
+  /* Ajustes finos de espaçamento e fonte para o celular */
   .modal-content {
     padding: 20px;
   }
@@ -1222,47 +1375,4 @@ footer p {
   .modal-product-price {
     font-size: 1.6rem;
   }
-}
-
-
-.about-content.single-column .about-text p {
-    text-align: justify;
-}
-
-/* =================================================================== */
-/* === CORREÇÃO FINAL E DEFINITIVA PARA O BOTÃO QUEBRADO === */
-/* Cole este bloco no final do seu arquivo style.css */
-/* =================================================================== */
-
-/* --- Ajuste Geral do Botão de Pagamento --- */
-.payment-method .btn {
-    /* Garante que o texto tenha prioridade no layout */
-    display: inline-flex; 
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: auto; /* Deixa o botão se ajustar ao conteúdo */
-    max-width: 100%; /* Impede que ele ultrapasse a tela */
-}
-
-
-/* --- Regra Específica para Telas de Celular --- */
-/* =================================================================== */
-/* === CORREÇÃO FINAL E DEFINITIVA PARA BOTÕES DA PÁGINA DE CONTATO === */
-/* Cole este bloco no final do seu arquivo style.css */
-/* =================================================================== */
-
-@media (max-width: 600px) {
-
-    /* Alvo: O container dos botões, especificamente na página de contato */
-    .contact-wrapper .form-buttons {
-        /* A MÁGICA: Força os botões a ficarem um embaixo do outro */
-        flex-direction: column;
-    }
-
-    /* Alvo: Os botões dentro desse container */
-    .contact-wrapper .form-buttons .btn {
-        /* Faz com que cada botão ocupe 100% da largura disponível */
-        width: 100%;
-    }
 }
