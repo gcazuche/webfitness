@@ -1,53 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const slider = document.querySelector(".slider");
-  if (slider) {
-    const slides = document.querySelectorAll(".slide");
-    const prevBtn = document.querySelector(".prev");
-    const nextBtn = document.querySelector(".next");
-    let currentSlide = 0;
-    const totalSlides = slides.length;
-
-    function showSlide(index) {
-      if (index >= totalSlides) currentSlide = 0;
-      else if (index < 0) currentSlide = totalSlides - 1;
-      else currentSlide = index;
-      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-    }
-    nextBtn.addEventListener("click", () => showSlide(currentSlide + 1));
-    prevBtn.addEventListener("click", () => showSlide(currentSlide - 1));
-    setInterval(() => showSlide(currentSlide + 1), 7000);
-  }
-
+  // --- LÓGICA DO MENU MOBILE ---
   const menuTrigger = document.getElementById("mobile-menu-trigger");
   const nav = document.querySelector("header nav");
   if (menuTrigger && nav) {
     menuTrigger.addEventListener("click", () => {
       nav.classList.toggle("menu-active");
       const icon = menuTrigger.querySelector("i");
-      if (nav.classList.contains("menu-active")) {
-        icon.classList.remove("fa-bars");
-        icon.classList.add("fa-times");
-      } else {
-        icon.classList.remove("fa-times");
-        icon.classList.add("fa-bars");
-      }
+      icon.classList.toggle("fa-bars");
+      icon.classList.toggle("fa-times");
     });
   }
 
+  // --- LÓGICA DO MODAL DE PRODUTOS ---
   const modal = document.getElementById("product-modal");
   if (modal) {
     const detailButtons = document.querySelectorAll(".btn-details");
     const closeModalBtn = document.querySelector(".close-modal");
-    const modalImg = document.getElementById("modal-img");
-    const modalName = document.getElementById("modal-name");
-    const modalPrice = document.getElementById("modal-price");
-    const modalSubprice = document.getElementById("modal-subprice");
-    const modalSpecsContainer = document.getElementById("modal-specs");
-    const modalColorsContainer = document.getElementById("modal-colors");
-    const modalContactBtn = document.getElementById("modal-contact-btn");
-    const modalComboLinksContainer =
-      document.getElementById("modal-combo-links");
-    const modalVideoLink = document.getElementById("modal-video-link");
 
     const colorMap = {
       preto: "#000000",
@@ -62,110 +30,160 @@ document.addEventListener("DOMContentLoaded", () => {
       rosa: "#e84393",
     };
 
+    // Função para criar uma seção de informações no modal
+    function createInfoSection(title, iconClass, items, listClass) {
+      if (!items || items.length === 0) return ""; // Retorna nada se não houver itens
+
+      const ul = document.createElement("ul");
+      ul.className = listClass;
+
+      items.forEach((itemText) => {
+        const li = document.createElement("li");
+        const parts = itemText.split(":");
+        if (parts.length > 1 && listClass === "specs-list") {
+          li.innerHTML = `<strong>${parts[0]}:</strong>${parts
+            .slice(1)
+            .join(":")}`;
+        } else {
+          li.textContent = itemText;
+        }
+        ul.appendChild(li);
+      });
+
+      return `
+        <div class="info-section">
+          <h3><i class="fas ${iconClass}"></i> ${title}</h3>
+          ${ul.outerHTML}
+        </div>
+      `;
+    }
+
     function openProductModal(cardElement) {
-      const name = cardElement.dataset.name,
-        img = cardElement.dataset.img,
-        specs = cardElement.dataset.specs,
-        colors = cardElement.dataset.colors,
-        price = cardElement.dataset.price,
-        subprice = cardElement.dataset.subprice,
-        comboItems = cardElement.dataset.comboItems,
-        videoLink = cardElement.dataset.videoLink;
+      // 1. Coletar todos os dados do cartão do produto
+      const dataset = cardElement.dataset;
+      if (!dataset.name || dataset.name === "Em-Breve") return;
 
-      if (!name || name === "Em-Breve") return;
-
-      modalName.textContent = name;
-      modalImg.src = img;
-      modalImg.alt = name;
-      modalContactBtn.href = `https://wa.me/5517981008047?text=Olá%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20produto:%20${encodeURIComponent(
-        name
+      // 2. Preencher informações básicas (Nome, Imagem, Preço, Botão WhatsApp)
+      modal.querySelector("#modal-name").textContent = dataset.name;
+      modal.querySelector("#modal-img").src = dataset.img;
+      modal.querySelector("#modal-price").textContent = dataset.price || "";
+      modal.querySelector("#modal-subprice").textContent =
+        dataset.subprice || "";
+      modal.querySelector(
+        "#modal-contact-btn"
+      ).href = `https://wa.me/5517981008047?text=Olá, gostaria de mais informações sobre o produto: ${encodeURIComponent(
+        dataset.name
       )}`;
 
-      modalPrice.textContent = price || "";
-      modalPrice.style.display = price ? "block" : "none";
-      modalSubprice.textContent = subprice || "";
-      modalSubprice.style.display = subprice ? "block" : "none";
+      // 3. Montar o conteúdo dinâmico das informações
+      const modalInfoContainer = modal.querySelector(".modal-info");
+      modalInfoContainer.innerHTML = ""; // Limpa o conteúdo anterior
 
-      // ATUALIZAÇÃO: Popula specs como uma lista <ul>
-      modalSpecsContainer.innerHTML = "";
-      if (specs) {
-        const ul = document.createElement("ul");
-        ul.className = "specs-list";
-        specs
-          .split("|")
-          .map((s) => s.trim())
-          .forEach((specText) => {
-            const li = document.createElement("li");
-            const parts = specText.split(":");
-            if (parts.length > 1) {
-              li.innerHTML = `<strong>${parts[0]}:</strong>${parts
-                .slice(1)
-                .join(":")}`;
-            } else {
-              li.textContent = specText;
-            }
-            ul.appendChild(li);
-          });
-        modalSpecsContainer.appendChild(ul);
+      let infoHtml = "";
+
+      // Seção: Informações Técnicas
+      infoHtml += createInfoSection(
+        "Informações Técnicas",
+        "fa-cogs",
+        dataset.specs ? dataset.specs.split("|").map((s) => s.trim()) : [],
+        "specs-list"
+      );
+
+      // Seção: Dimensões do Equipamento
+      const dimensionItems = dataset.dimensions
+        ? dataset.dimensions.split("|").map((s) => s.trim())
+        : [];
+      if (dataset.weight) {
+        dimensionItems.push(`Peso: ${dataset.weight}`);
+      }
+      infoHtml += createInfoSection(
+        "Dimensões do equipamento",
+        "fa-ruler-combined",
+        dimensionItems,
+        "specs-list"
+      );
+
+      // Seção: Benefícios
+      infoHtml += createInfoSection(
+        "Benefícios do Equipamento",
+        "fa-star",
+        dataset.benefits
+          ? dataset.benefits.split("|").map((s) => s.trim())
+          : [],
+        "benefits-list"
+      );
+
+      // 4. Lidar com links de Combo, se existirem
+      if (dataset.comboItems) {
+        const comboLinks = dataset.comboItems
+          .split(",")
+          .map((item) => {
+            const itemName = item.trim();
+            return `<button class="combo-item-link" data-target-name="${itemName}">- Ficha Técnica ${itemName}</button>`;
+          })
+          .join("");
+        infoHtml += `<div id="modal-combo-links">${comboLinks}</div>`;
       }
 
-      // ATUALIZAÇÃO: Lógica para mostrar ou esconder o botão de vídeo
-      if (videoLink) {
-        modalVideoLink.href = videoLink;
+      // 5. Seção: Cores Disponíveis
+      if (dataset.colors) {
+        const colorBubbles = dataset.colors
+          .split(",")
+          .map((c) => {
+            const colorName = c.trim().toLowerCase();
+            const colorCode = colorMap[colorName];
+            if (!colorCode) return "";
+            const border =
+              colorName === "branco" ? "border: 1px solid #ddd;" : "";
+            const title =
+              colorName.charAt(0).toUpperCase() + colorName.slice(1);
+            return `<div class="color-bubble" style="background-color:${colorCode}; ${border}" title="${title}"></div>`;
+          })
+          .join("");
+
+        if (colorBubbles) {
+          infoHtml += `
+            <div class="info-section">
+                <h3><i class="fas fa-palette"></i> Cores Disponíveis</h3>
+                <div class="color-swatch-container">${colorBubbles}</div>
+            </div>
+          `;
+        }
+      }
+
+      modalInfoContainer.innerHTML = infoHtml;
+
+      // 6. Lidar com o botão de vídeo
+      const modalVideoLink = modal.querySelector("#modal-video-link");
+      if (dataset.videoLink) {
+        modalVideoLink.href = dataset.videoLink;
         modalVideoLink.style.display = "block";
       } else {
         modalVideoLink.style.display = "none";
       }
 
-      modalColorsContainer.innerHTML = "";
-      if (colors) {
-        colors
-          .split(",")
-          .map((c) => c.trim().toLowerCase())
-          .forEach((colorName) => {
-            const colorCode = colorMap[colorName];
-            if (colorCode) {
-              const bubble = document.createElement("div");
-              bubble.className = "color-bubble";
-              bubble.style.backgroundColor = colorCode;
-              bubble.title =
-                colorName.charAt(0).toUpperCase() + colorName.slice(1);
-              if (colorName === "branco")
-                bubble.style.border = "1px solid #ddd";
-              modalColorsContainer.appendChild(bubble);
-            }
-          });
-      }
-
-      modalComboLinksContainer.innerHTML = "";
-      modalComboLinksContainer.style.display = "none";
-      if (comboItems) {
-        modalComboLinksContainer.style.display = "block";
-        comboItems
-          .split(",")
-          .map((item) => item.trim())
-          .forEach((itemName) => {
-            const link = document.createElement("button");
-            link.className = "combo-item-link";
-            link.textContent = `Clique Aqui - Ficha Técnica ${itemName}`;
-            link.addEventListener("click", () => {
-              const targetCard = document.querySelector(
-                `.product-card[data-name="${itemName}"]`
-              );
-              if (targetCard) {
-                openProductModal(targetCard);
-                modal.scrollTo(0, 0);
-              } else {
-                alert(`Ficha técnica para "${itemName}" não encontrada.`);
-              }
-            });
-            modalComboLinksContainer.appendChild(link);
-          });
-      }
-
+      // 7. Abrir o Modal
       modal.style.display = "flex";
+      document.body.style.overflow = "hidden"; // Impede o scroll da página ao fundo
     }
 
+    // Adiciona o evento de clique para os links de combo DENTRO do modal
+    modal.addEventListener("click", (event) => {
+      if (event.target.classList.contains("combo-item-link")) {
+        const targetName = event.target.dataset.targetName;
+        const targetCard = document.querySelector(
+          `.product-card[data-name="${targetName}"]`
+        );
+        if (targetCard) {
+          openProductModal(targetCard);
+          modal.scrollTo(0, 0);
+        } else {
+          alert(`Ficha técnica para "${targetName}" não encontrada.`);
+        }
+      }
+    });
+
+    // Adiciona evento de clique para TODOS os botões "Ver Detalhes"
     detailButtons.forEach((button) => {
       button.addEventListener("click", () => {
         const card = button.closest(".product-card");
@@ -173,14 +191,15 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
+    // Função para fechar o modal
     function closeModal() {
       modal.style.display = "none";
+      document.body.style.overflow = "auto";
     }
+
     closeModalBtn.addEventListener("click", closeModal);
     window.addEventListener("click", (event) => {
-      if (event.target === modal) {
-        closeModal();
-      }
+      if (event.target === modal) closeModal();
     });
   }
 });
