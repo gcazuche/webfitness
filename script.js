@@ -1,5 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // --- LÓGICA DO MENU MOBILE ---
+  const slider = document.querySelector(".slider");
+  if (slider) {
+    const slides = document.querySelectorAll(".slide");
+    const prevBtn = document.querySelector(".prev");
+    const nextBtn = document.querySelector(".next");
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+      if (index >= totalSlides) {
+        currentSlide = 0;
+      } else if (index < 0) {
+        currentSlide = totalSlides - 1;
+      } else {
+        currentSlide = index;
+      }
+      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    if (nextBtn && prevBtn) {
+      nextBtn.addEventListener("click", () => showSlide(currentSlide + 1));
+      prevBtn.addEventListener("click", () => showSlide(currentSlide - 1));
+    }
+
+    setInterval(() => showSlide(currentSlide + 1), 7000);
+  }
+
   const menuTrigger = document.getElementById("mobile-menu-trigger");
   const nav = document.querySelector("header nav");
   if (menuTrigger && nav) {
@@ -11,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- LÓGICA DO MODAL DE PRODUTOS ---
   const modal = document.getElementById("product-modal");
   if (modal) {
     const detailButtons = document.querySelectorAll(".btn-details");
@@ -30,9 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
       rosa: "#e84393",
     };
 
-    // Função para criar uma seção de informações no modal
     function createInfoSection(title, iconClass, items, listClass) {
-      if (!items || items.length === 0) return ""; // Retorna nada se não houver itens
+      if (!items || items.length === 0) return "";
 
       const ul = document.createElement("ul");
       ul.className = listClass;
@@ -59,11 +83,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function openProductModal(cardElement) {
-      // 1. Coletar todos os dados do cartão do produto
       const dataset = cardElement.dataset;
       if (!dataset.name || dataset.name === "Em-Breve") return;
 
-      // 2. Preencher informações básicas (Nome, Imagem, Preço, Botão WhatsApp)
       modal.querySelector("#modal-name").textContent = dataset.name;
       modal.querySelector("#modal-img").src = dataset.img;
       modal.querySelector("#modal-price").textContent = dataset.price || "";
@@ -75,13 +97,11 @@ document.addEventListener("DOMContentLoaded", () => {
         dataset.name
       )}`;
 
-      // 3. Montar o conteúdo dinâmico das informações
       const modalInfoContainer = modal.querySelector(".modal-info");
-      modalInfoContainer.innerHTML = ""; // Limpa o conteúdo anterior
+      modalInfoContainer.innerHTML = "";
 
       let infoHtml = "";
 
-      // Seção: Informações Técnicas
       infoHtml += createInfoSection(
         "Informações Técnicas",
         "fa-cogs",
@@ -89,7 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "specs-list"
       );
 
-      // Seção: Dimensões do Equipamento
       const dimensionItems = dataset.dimensions
         ? dataset.dimensions.split("|").map((s) => s.trim())
         : [];
@@ -103,7 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "specs-list"
       );
 
-      // Seção: Benefícios
       infoHtml += createInfoSection(
         "Benefícios do Equipamento",
         "fa-star",
@@ -113,7 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "benefits-list"
       );
 
-      // 4. Lidar com links de Combo, se existirem
       if (dataset.comboItems) {
         const comboLinks = dataset.comboItems
           .split(",")
@@ -125,7 +142,6 @@ document.addEventListener("DOMContentLoaded", () => {
         infoHtml += `<div id="modal-combo-links">${comboLinks}</div>`;
       }
 
-      // 5. Seção: Cores Disponíveis
       if (dataset.colors) {
         const colorBubbles = dataset.colors
           .split(",")
@@ -153,7 +169,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       modalInfoContainer.innerHTML = infoHtml;
 
-      // 6. Lidar com o botão de vídeo
       const modalVideoLink = modal.querySelector("#modal-video-link");
       if (dataset.videoLink) {
         modalVideoLink.href = dataset.videoLink;
@@ -162,12 +177,10 @@ document.addEventListener("DOMContentLoaded", () => {
         modalVideoLink.style.display = "none";
       }
 
-      // 7. Abrir o Modal
       modal.style.display = "flex";
-      document.body.style.overflow = "hidden"; // Impede o scroll da página ao fundo
+      document.body.style.overflow = "hidden";
     }
 
-    // Adiciona o evento de clique para os links de combo DENTRO do modal
     modal.addEventListener("click", (event) => {
       if (event.target.classList.contains("combo-item-link")) {
         const targetName = event.target.dataset.targetName;
@@ -183,7 +196,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Adiciona evento de clique para TODOS os botões "Ver Detalhes"
     detailButtons.forEach((button) => {
       button.addEventListener("click", () => {
         const card = button.closest(".product-card");
@@ -191,7 +203,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // Função para fechar o modal
     function closeModal() {
       modal.style.display = "none";
       document.body.style.overflow = "auto";
